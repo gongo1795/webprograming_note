@@ -1,179 +1,213 @@
-/* 파스텔 색상 변수 정의 */
+/* 색상 변수 */
 :root {
-    --color-paper: #f9f7f4; /* 밝은 미색 (종이) */
-    --color-ink: #2c2c2c;   /* 진한 검정 (잉크) */
-    --color-line: #e0e0e0;  /* 연한 회색 (노트 줄) */
-    --color-accent-pink: #f2a6b2; /* 파스텔 핑크 (강조/활성화) */
-    --color-accent-mint: #b2f2e7; /* 파스텔 민트 (형광펜) */
-    --color-border-line: #f0f0f0; /* 경계선 */
+    --color-bg-page: #f3f4f6;
+    --color-paper: #ffffff;
+    --color-ink: #222222;
+    --color-muted: #6b7280;
+    --color-border: #e5e7eb;
+    --color-accent: #f97373;      /* 코랄 계열 포인트 */
+    --color-accent-soft: #fde2e2; /* 연한 강조 배경 */
 }
 
-/* 기본 스타일 및 폰트 설정 */
+/* 기본 스타일 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.7;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: var(--color-bg-page);
     color: var(--color-ink);
 }
 
-/* 헤더 스타일 */
-header {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 3px solid var(--color-accent-pink);
+/* 헤더 */
+.site-header {
+    background-color: #111827;
+    color: #f9fafb;
+    padding: 18px 16px;
+    border-bottom: 3px solid var(--color-accent);
 }
 
-header h1 {
+.header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.site-header h1 {
     margin: 0;
     font-weight: 700;
+    font-size: 1.5rem;
 }
 
-/* 노트 페이지 컨테이너 */
+.header-subtitle {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    color: #e5e7eb;
+}
+
+/* 메인 카드 컨테이너 */
 .note-page {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 40px 60px;
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 32px 28px 40px;
     background-color: var(--color-paper);
-    border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-    min-height: 80vh;
-    
-    /* 노트 줄무늬 배경 효과 */
-    background-image: 
-        linear-gradient(to right, var(--color-accent-pink) 1px, transparent 1px), /* 세로 빨간 줄 */
-        linear-gradient(to bottom, var(--color-line) 1px, transparent 1px); /* 가로 노트 줄 */
-    background-size: 850px 100%, 100% 30px; 
-    background-position: 50px 0, 0 0; /* 세로 줄 위치 조정 */
-    
-    position: relative;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
-/* 탭 메뉴 스타일 */
+/* 탭 메뉴 */
 .tab-menu {
-    text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--color-border-line);
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 6px;
+    margin-bottom: 24px;
 }
 
 .tab-button {
     background-color: transparent;
-    color: var(--color-ink);
     border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 1.1em;
+    padding: 10px 16px;
+    font-size: 0.95rem;
     font-weight: 500;
-    border-radius: 5px 5px 0 0;
-    transition: color 0.3s, border-bottom 0.3s;
-    position: relative;
-    top: 2px;
+    color: var(--color-muted);
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .tab-button:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-ink);
+    background-color: #f3f4f6;
 }
 
 .tab-button.active {
-    color: var(--color-accent-pink);
-    font-weight: 700;
-    border-bottom: 4px solid var(--color-accent-pink);
+    color: #111827;
+    background-color: var(--color-paper);
+    border-bottom: 2px solid var(--color-accent);
 }
 
-/* 섹션 숨기기/보이기 */
+/* 섹션 */
 .concept-section {
-    padding: 20px 0;
     display: none;
+    padding-top: 8px;
 }
 
 .concept-section.active {
     display: block;
 }
 
-/* 제목 스타일 (손글씨 느낌) */
 .concept-section h2 {
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: 2.5em;
-    color: var(--color-ink);
-    border-bottom: 3px dashed var(--color-accent-pink);
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-top: 0;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin: 4px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
 }
 
-.concept-section h3 {
-    color: var(--color-ink);
-    border-left: 5px solid var(--color-accent-mint); /* 파스텔 민트 강조 */
+.note-content h3 {
+    font-size: 1.05rem;
+    margin-top: 24px;
+    margin-bottom: 8px;
     padding-left: 10px;
-    margin-top: 30px;
-    font-weight: 700;
+    border-left: 3px solid var(--color-accent);
 }
 
-/* 내용 강조 (형광펜 효과) */
+/* 강조 문장 */
 .highlight {
-    background-color: var(--color-accent-mint); /* 파스텔 민트 형광펜 */
-    padding: 2px 5px;
-    border-radius: 3px;
-    font-weight: bold;
+    background-color: var(--color-accent-soft);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
 }
 
 /* 리스트 스타일 */
-ul {
-    list-style: none; /* 기본 점 제거 */
-    padding-left: 15px;
+.note-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 8px;
 }
 
-ul li:before {
-    content: "•"; /* 커스텀 불릿 (진한 잉크색) */
-    color: var(--color-ink);
-    font-weight: 900;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
+.note-content ul li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
 }
 
-/* 코드 블록 스타일 (포스트잇/메모지 느낌) */
+.note-content ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 1.5;
+    font-size: 0.85rem;
+    color: var(--color-accent);
+}
+
+/* 인라인 코드 & 코드 블록 */
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.88em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+}
+
 pre {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid var(--color-border-line);
+    margin: 14px 0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    border: 1px solid var(--color-border);
     overflow-x: auto;
-    font-family: monospace;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 0.88rem;
 }
 
-/* 테이블 스타일 */
+pre code {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+/* 테이블 */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 0.95em;
+    margin: 16px 0;
+    font-size: 0.9rem;
 }
 
-table th, table td {
-    border: 1px solid var(--color-border-line);
-    padding: 10px;
+table th,
+table td {
+    padding: 10px 8px;
+    border: 1px solid var(--color-border);
     text-align: left;
+    vertical-align: top;
 }
 
 table th {
-    background-color: #eeeeee;
-    color: var(--color-ink);
-    font-weight: 700;
+    background-color: #f9fafb;
+    font-weight: 600;
 }
 
-/* 푸터 스타일 */
-footer {
+table td code {
+    white-space: nowrap;
+}
+
+/* 푸터 */
+.site-footer {
+    max-width: 960px;
+    margin: 0 auto 24px;
+    padding: 8px 4px 0;
     text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid var(--color-line);
-    color: #777;
-    margin-top: 30px;
-    font-size: 0.9em;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    border-top: 1px solid rgba(148, 163, 184, 0.4);
 }
