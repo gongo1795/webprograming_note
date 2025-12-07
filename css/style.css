@@ -1,36 +1,30 @@
-/* 기본 스타일 초기화 및 폰트 설정 */
-body {
-    font-family: 'Noto Sans KR', sans-serif; /* 노트 분위기를 위한 폰트 */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9; /* 약간 미색의 배경 */
-    color: #333;
+/* 파스텔 색상 변수 정의 */
+:root {
+    --color-paper: #f9f7f4; /* 밝은 미색 (종이) */
+    --color-ink: #2c2c2c;   /* 진한 검정 (잉크) */
+    --color-line: #e0e0e0;  /* 연한 회색 (노트 줄) */
+    --color-accent-pink: #f2a6b2; /* 파스텔 핑크 (강조/활성화) */
+    --color-accent-mint: #b2f2e7; /* 파스텔 민트 (형광펜) */
+    --color-border-line: #f0f0f0; /* 경계선 */
 }
 
-/* 노트 페이지 중앙 정렬 및 종이 질감 표현 */
-.note-page {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 40px 50px;
-    background-color: #ffffff; /* 흰 종이 느낌 */
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 입체감 */
-    border-left: 5px solid #ff4d4d; /* 노트 왼쪽 빨간색 선 */
-    min-height: 80vh;
-    position: relative;
-    /* 노트를 세로로 나누는 파란색 줄을 배경에 추가 */
-    background-image: linear-gradient(to bottom, #eaeaea 1px, transparent 1px);
-    background-size: 100% 30px; /* 줄 간격 조절 */
+/* 기본 스타일 및 폰트 설정 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: var(--color-ink);
 }
 
 /* 헤더 스타일 */
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
     padding: 20px 0;
     text-align: center;
-    border-bottom: 5px solid #ff4d4d;
+    border-bottom: 3px solid var(--color-accent-pink);
 }
 
 header h1 {
@@ -38,114 +32,148 @@ header h1 {
     font-weight: 700;
 }
 
-/* 개념 섹션 스타일 */
+/* 노트 페이지 컨테이너 */
+.note-page {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 40px 60px;
+    background-color: var(--color-paper);
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+    min-height: 80vh;
+    
+    /* 노트 줄무늬 배경 효과 */
+    background-image: 
+        linear-gradient(to right, var(--color-accent-pink) 1px, transparent 1px), /* 세로 빨간 줄 */
+        linear-gradient(to bottom, var(--color-line) 1px, transparent 1px); /* 가로 노트 줄 */
+    background-size: 850px 100%, 100% 30px; 
+    background-position: 50px 0, 0 0; /* 세로 줄 위치 조정 */
+    
+    position: relative;
+}
+
+/* 탭 메뉴 스타일 */
+.tab-menu {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-border-line);
+}
+
+.tab-button {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 5px 5px 0 0;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+    top: 2px;
+}
+
+.tab-button:hover {
+    color: var(--color-accent-pink);
+}
+
+.tab-button.active {
+    color: var(--color-accent-pink);
+    font-weight: 700;
+    border-bottom: 4px solid var(--color-accent-pink);
+}
+
+/* 섹션 숨기기/보이기 */
 .concept-section {
-    margin-top: 30px;
     padding: 20px 0;
-    display: none; /* JS로 활성화될 때까지 숨김 */
+    display: none;
 }
 
 .concept-section.active {
-    display: block; /* 활성화된 섹션만 표시 */
+    display: block;
 }
 
-/* 제목 스타일 (손글씨 느낌 강조) */
+/* 제목 스타일 (손글씨 느낌) */
 .concept-section h2 {
-    color: #0077b6; /* 파란색 펜 색상 */
-    border-bottom: 2px solid #0077b6;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 2.5em;
+    color: var(--color-ink);
+    border-bottom: 3px dashed var(--color-accent-pink);
     display: inline-block;
     padding-bottom: 5px;
     margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .concept-section h3 {
-    color: #555;
-    border-left: 5px solid #ffd700; /* 형광펜 느낌 */
+    color: var(--color-ink);
+    border-left: 5px solid var(--color-accent-mint); /* 파스텔 민트 강조 */
     padding-left: 10px;
-    margin-top: 25px;
+    margin-top: 30px;
+    font-weight: 700;
 }
 
-/* 내용 스타일 */
-.note-content {
-    padding-left: 10px;
-}
-
-/* 강조 텍스트 (형광펜 효과) */
+/* 내용 강조 (형광펜 효과) */
 .highlight {
-    background-color: #fffacd; /* 레몬색 형광펜 */
+    background-color: var(--color-accent-mint); /* 파스텔 민트 형광펜 */
     padding: 2px 5px;
     border-radius: 3px;
     font-weight: bold;
 }
 
 /* 리스트 스타일 */
-ul, ol {
-    padding-left: 20px;
+ul {
+    list-style: none; /* 기본 점 제거 */
+    padding-left: 15px;
 }
 
-/* 코드 블록 스타일 (메모지 느낌) */
-pre, code {
+ul li:before {
+    content: "•"; /* 커스텀 불릿 (진한 잉크색) */
+    color: var(--color-ink);
+    font-weight: 900;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* 코드 블록 스타일 (포스트잇/메모지 느낌) */
+pre {
     background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px dashed #aaa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-line);
     overflow-x: auto;
     font-family: monospace;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* 테이블 스타일 (정리된 표 느낌) */
+/* 테이블 스타일 */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 15px 0;
+    margin: 20px 0;
+    font-size: 0.95em;
 }
 
 table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid var(--color-border-line);
+    padding: 10px;
     text-align: left;
 }
 
 table th {
-    background-color: #e0f7fa; /* 밝은 청록색 헤더 */
-    color: #333;
-    font-weight: bold;
-}
-
-/* 탭 메뉴 스타일 */
-.tab-menu {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.tab-button {
-    background-color: #eee;
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px 5px 0 0;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.tab-button:hover {
-    background-color: #ddd;
-}
-
-.tab-button.active {
-    background-color: #ff4d4d; /* 활성 탭은 빨간색 (노트 선 색상과 통일) */
-    color: white;
-    font-weight: bold;
-    border-bottom: 3px solid #ff4d4d;
+    background-color: #eeeeee;
+    color: var(--color-ink);
+    font-weight: 700;
 }
 
 /* 푸터 스타일 */
 footer {
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--color-line);
     color: #777;
     margin-top: 30px;
+    font-size: 0.9em;
 }
